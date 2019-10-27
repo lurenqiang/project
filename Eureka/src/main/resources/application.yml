@@ -1,0 +1,23 @@
+spring:
+  application:
+    name: Eureka_Center_Service
+
+server:
+  port: 8761
+
+eureka:
+  instance:
+    hostname: localhost
+  client:
+    #声明自己是个服务器端,不在注册中心注册自己
+    register-with-eureka: false
+    fetch-registry: false
+    serviceUrl:
+    #注册中心地址，其他服务指定这个注册中心
+      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
+  server:
+    # 该配置关闭自我保护机制，防止失效的服务也被一直访问 (Spring Cloud默认该配置是 true)
+    enable-self-preservation: false
+    #检查失效服务的时间
+    eviction-interval-timer-in-ms: 30000
+

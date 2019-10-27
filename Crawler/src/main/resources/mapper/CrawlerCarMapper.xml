@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lurenqiang.crawler.Dao.CrawlerCarMapper" >
+    <resultMap id="BaseResult" type="java.util.Map">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="car_name" property="carName" jdbcType="VARCHAR"/>
+        <result column="car_web_forsale" property="carWebForSale" jdbcType="VARCHAR"/>
+        <result column="car_web_presell" property="carWebPreSell" jdbcType="VARCHAR"/>
+        <result column="car_web_haltsale" property="carWebHaltSale" jdbcType="VARCHAR"/>
+    </resultMap>
+    <select id="selectCarName" resultType="java.lang.String">
+        select car_name from car_web
+    </select>
+
+    <select id="selectWebByCarName" parameterType="java.lang.String" resultMap="BaseResult" >
+        select car_web_forsale,car_web_presell,car_web_haltsale from car_web
+        where id =#{id,jdbcType=VARCHAR}
+    </select>
+</mapper>

@@ -1,0 +1,19 @@
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+</head>
+<body>
+<h1>登录页面</h1>
+<form method="post" action="/car/api/login/verifyLogin">
+    user:<input type="text" name="name">
+    <br>
+    password:<input type="password " name="password"/>
+    <br>
+    <button type="submit" name="登录">登录</button>
+</form>
+<p th:text="'Hello！, ' + ${msg} + '!'" > </p>
+</body>
+</html>

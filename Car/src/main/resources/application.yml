@@ -1,0 +1,89 @@
+server:
+  port: 8989
+  servlet:
+    context-path: /car/api/
+
+eureka:
+  instance:
+    #每隔20秒发送心跳
+    lease-renewal-interval-in-seconds: 20
+    #30秒后从eureka上移除服务
+    lease-expiration-duration-in-seconds: 30
+  client:
+    # 开启健康检查（依赖spring-boot-starter-actuator）
+    healthcheck:
+      enabled: true
+    # 指定服务注册中心的地址
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+
+spring:
+  application:
+    name: CarService
+  thymeleaf:
+    prefix: classpath:/templates/models/
+    suffix: .html
+    mode: HTML5
+    encoding: UTF-8
+    servlet:
+      content-type: text/html
+    cache: false
+
+
+  datasource:
+    driver-class-name:  com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/car?useUnicode=true&characterEncoding=UTF-8&useSSL=false&useJDBCCompliantTimezoneShift=true&serverTimezone=UTC
+    username: root
+    password: lrq1994112333
+      ###################以下为druid增加的配置###########################
+    type: com.alibaba.druid.pool.DruidDataSource
+      # 下面为连接池的补充设置，应用到上面所有数据源中
+      # 初始化大小，最小，最大
+    druid:
+      #连接池大小
+      initial-size: 10
+      #连接池最小连接数
+      min-idle: 5
+      #连接池最大连接数
+      max-active: 20
+      #获取连接等待超时时间
+      max-wait: 1000
+      # 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒
+      time-between-eviction-runs-millis: 60000
+      # 配置一个连接在池中最小生存的时间，单位是毫秒
+      min-evictable-idle-time-millis: 300000
+      validation-query: SELECT 'x'
+      test-while-idle: true
+      test-on-borrow: false
+      test-on-return: false
+      # 打开PSCache，并且指定每个连接上PSCache的大小
+      max-pool-prepared-statement-per-connection-size: 20
+      pool-prepared-statements: true
+      max-open-prepared-statements: 100
+      time-between-log-stats-millis: 300000
+      # 配置监控统计拦截的filters，去掉后监控界面sql无法统计，'wall'用于防火墙
+      filter: stat,wall,log4j
+      # 通过connectProperties属性来打开mergeSql功能；慢SQL记录
+      connect-properties: config.decrypt=false
+      remove-abandoned: true
+      remove-abandoned-timeout: 1800
+      log-abandoned: false
+
+#配置mybatis
+mybatis:
+  type-aliases-package:
+  #所有mapper文件映射路径
+  mapper-locations: classpath:mapper/*.xml
+  #mybatis的配置文件
+  #config-location: classpath:mybatis-config.xml
+
+
+#开启日志
+#
+#显示执行SQL语句
+logging:
+  level:
+    com:
+      lurenqiang:
+        car:
+          Dao: debug

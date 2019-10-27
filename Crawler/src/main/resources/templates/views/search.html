@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Crawler</title>
+</head>
+<body>
+<h1>爬取页面</h1>
+<form method="post" action="/crawler/api/car_crawler">
+    车名:<label>
+    <input type="text" name="carName" th:list="itemlist">
+</label>
+    <!--/*@thymesVar id="carList" type=""*/-->
+    <datalist th:id="itemlist" >
+        <option th:each="a:${carList}" th:value="${a}" ></option>
+    </datalist>
+    <br>
+    <br>
+    <button type="submit" name="查询">查询</button>
+</form>
+</body>
+</html>
