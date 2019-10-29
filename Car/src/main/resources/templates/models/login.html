@@ -1,9 +1,9 @@
-
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Login</title>
+
 </head>
 <body>
 <h1>登录页面</h1>
@@ -14,6 +14,18 @@
     <br>
     <button type="submit" name="登录">登录</button>
 </form>
-<p th:text="'Hello！, ' + ${msg} + '!'" > </p>
+<!--<p th:text="'Hello！, ' + ${msg} + '!'" > </p>-->
+<script th:inline="javascript"> // 需要添加 th:inline 才能访问 model 中的属性
+window.onload = function () {
+    // 获取ModelAndView中的msg对象
+    var msg = [[${msg}]];
+    // 打印
+    console.log(msg);
+    if(msg!=null){
+        console.log(msg);
+        alert(msg);
+    }
+}
+</script>
 </body>
 </html>

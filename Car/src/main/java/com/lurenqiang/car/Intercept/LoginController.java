@@ -2,6 +2,7 @@ package com.lurenqiang.car.Intercept;
 
 import com.lurenqiang.car.Dao.UserMapper;
 import com.lurenqiang.car.Vo.User;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,6 +13,7 @@ import java.util.Map;
 
 
 @Controller
+@Slf4j
 @RequestMapping("login")
 public class LoginController {
     private UserMapper userMapper;
@@ -33,6 +35,7 @@ public class LoginController {
         }else if(!password.equals(user.getPassword())){
             modelAndView.setViewName("login");
             modelAndView.addObject("msg","密码错误");
+            log.info(modelAndView.toString());
             return modelAndView;
         }else{
             session.setAttribute("user",user);
