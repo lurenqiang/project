@@ -29,6 +29,9 @@ public class DefaultMvcConfig implements WebMvcConfigurer {
         List<String> extendUrl = new ArrayList<>();
         extendUrl.add("/login/login_in");
         extendUrl.add("/login/verifyLogin");
+        extendUrl.add("/**/*.js");
+        extendUrl.add("/**/*.css");
+        extendUrl.add("/**/*.jpg");
         registry.addInterceptor(loginIntercept).addPathPatterns("/**").excludePathPatterns(extendUrl);
     }
     /**
@@ -37,7 +40,7 @@ public class DefaultMvcConfig implements WebMvcConfigurer {
      */
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        registry.addResourceHandler("/static/**").addResourceLocations("classpath:/static/");
+        registry.addResourceHandler("/static/**").addResourceLocations("classpath: /static/");
         WebMvcConfigurer.super.addResourceHandlers(registry);
     }
 

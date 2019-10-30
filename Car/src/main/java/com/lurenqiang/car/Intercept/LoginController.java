@@ -3,13 +3,12 @@ package com.lurenqiang.car.Intercept;
 import com.lurenqiang.car.Dao.UserMapper;
 import com.lurenqiang.car.Vo.User;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import java.util.Map;
 
 
 @Controller
@@ -43,6 +42,12 @@ public class LoginController {
             modelAndView.setViewName("index");
             return modelAndView;
         }
+    }
+
+    @RequestMapping("/quit")
+    public String quit(HttpServletRequest request){
+        request.getSession().invalidate();
+        return "login";
     }
     
 }

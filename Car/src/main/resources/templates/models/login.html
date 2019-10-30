@@ -1,31 +1,56 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Login</title>
-
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1">
+	<title>Login</title>
+	<link rel="stylesheet" href="/car/api/auth.css">
 </head>
+
 <body>
-<h1>登录页面</h1>
-<form method="post" action="/car/api/login/verifyLogin">
-    user:<input type="text" name="name">
-    <br>
-    password:<input type="password " name="password"/>
-    <br>
-    <button type="submit" name="登录">登录</button>
-</form>
-<!--<p th:text="'Hello！, ' + ${msg} + '!'" > </p>-->
-<script th:inline="javascript"> // 需要添加 th:inline 才能访问 model 中的属性
-window.onload = function () {
-    // 获取ModelAndView中的msg对象
-    var msg = [[${msg}]];
-    // 打印
-    console.log(msg);
-    if(msg!=null){
-        console.log(msg);
-        alert(msg);
-    }
-}
-</script>
+	<div class="lowin lowin-blue">
+		<div class="lowin-brand">
+			<img src="/car/api/kodinger.jpg" alt="logo">
+		</div>
+		<div class="lowin-wrapper">
+			<div class="lowin-box lowin-login">
+				<div class="lowin-box-inner">
+					<form method="post">
+						<p>Sign in to continue</p>
+						<div class="lowin-group">
+							<label>Name</label>
+							<input type="name" autocomplete="name" name="name" class="lowin-input">
+						</div>
+						<div class="lowin-group password-group">
+							<label>Password <a href="#" class="forgot-link">Forgot Password?</a></label>
+							<input type="password" name="password" autocomplete="current-password" class="lowin-input">
+						</div>
+						<button type="submit" class="lowin-btn login-btn">
+							Sign In
+						</button>
+						<script th:inline="javascript"> // 需要添加 th:inline 才能访问 model 中的属性
+                        window.onload = function () {
+                            // 获取ModelAndView中的msg对象
+                            var msg = [[${msg}]];
+                            // 打印
+                            /*console.log(msg);*/
+                            if(msg!=null){
+                                console.log(msg);
+                                alert(msg);
+                            }
+                        }
+						</script>
+					</form>
+				</div>
+			</div>
+
+	</div>
+	<script src="/car/api/auth.js"></script>
+	<script>
+        Auth.init({
+            login_url: '/car/api/login/verifyLogin',
+            forgot_url: '#forgot'
+        });
+	</script>
 </body>
 </html>
