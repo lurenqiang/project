@@ -32,6 +32,9 @@ public class DefaultMvcConfig implements WebMvcConfigurer {
         extendUrl.add("/**/*.js");
         extendUrl.add("/**/*.css");
         extendUrl.add("/**/*.jpg");
+        extendUrl.add("/**/*.woff");
+        extendUrl.add("/**/*.gif");
+        extendUrl.add("/**/*.tff");
         registry.addInterceptor(loginIntercept).addPathPatterns("/**").excludePathPatterns(extendUrl);
     }
     /**

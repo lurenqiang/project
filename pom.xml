@@ -18,6 +18,7 @@
     <modules>
         <module>car</module>
         <module>crawler</module>
+        <module>sore</module>
     </modules>
 
     <dependencies>

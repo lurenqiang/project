@@ -8,8 +8,11 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="car" />
+        <module name="crawler" />
         <module name="Crawler" />
+        <module name="eureka" />
         <module name="Eureka" />
+        <module name="Sore" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
