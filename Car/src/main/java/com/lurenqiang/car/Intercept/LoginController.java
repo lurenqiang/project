@@ -25,7 +25,8 @@ public class LoginController {
     }
 
     @RequestMapping("/verifyLogin")
-    public ModelAndView verifyLogin(String name, String password, HttpSession session,ModelAndView modelAndView){
+    public ModelAndView verifyLogin(String name, String password,HttpSession session){
+        ModelAndView modelAndView = new ModelAndView();
         User user = userMapper.selectByName(name);
         if(user == null){
             modelAndView.setViewName("login");
@@ -48,6 +49,11 @@ public class LoginController {
     public String quit(HttpServletRequest request){
         request.getSession().invalidate();
         return "login";
+    }
+
+    @RequestMapping("/index")
+    public String index(){
+        return "index";
     }
     
 }
